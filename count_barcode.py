@@ -1,6 +1,4 @@
-#script to count barcodes within a selection of target sequences
-
-#barcode, sum of seq_counts, length of counts
+"""script to count barcodes within a selection of target sequence"""
 
 import string
 import argparse
@@ -10,7 +8,6 @@ def main():
     parser = argparse.ArgumentParser(description = """Generate summary stats
     for barcodes within sequences""")
     parser.add_argument('input_seqs', help = """input seq file as a raw .txt""")
-    #parser.add_argument('barcode_name', help = """barcode_name""")
     parser.add_argument('barcode_in', help = """paired barcode primer name file""")
     args = parser.parse_args()
     
