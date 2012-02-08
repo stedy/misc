@@ -39,8 +39,9 @@ def main():
 
     p= sorted(d.iteritems(), key = itemgetter(1), reverse = True)
     count_sum = sum(counts)
-    for k, v in p:
-        print k, float(v)/count_sum
+    with open(args.outfile, 'wb') as ao:
+        for k, v in p:
+             ao.write("%s %g \n" % (k, float(v)/count_sum))
 
 if __name__ == "__main__":
     main()
