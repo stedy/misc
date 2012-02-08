@@ -4,17 +4,18 @@ from collections import defaultdict
 from operator import itemgetter
 import argparse
 
-test, motifs= [], []
+test, motifs, counts = [], [], []
 def motif_finder(motif, count, n):
     s = 0
     n = int(n)
     for x in range(len(motif)):
         k = motif[s:s+n]
         if len(k) == n:
-            print k, count
+            #print k, count
             s += 1
             test.append(list([k,count]))
             motifs.append(k)
+            counts.append(count)
             
 
 def main():
@@ -36,8 +37,10 @@ def main():
         for x in test:
             d[x[0]] += int(x[1])
 
-    print sorted(d.iteritems(), key = itemgetter(1), reverse = True)
-
+    p= sorted(d.iteritems(), key = itemgetter(1), reverse = True)
+    count_sum = sum(counts)
+    for k, v in p:
+        print k, float(v)/count_sum
 
 if __name__ == "__main__":
     main()
