@@ -5,17 +5,19 @@ from operator import itemgetter
 import argparse
 
 test, motifs, counts = [], [], []
+forbidden = ['CAS', 'ASS', 'CASS']
 def motif_finder(motif, count, n):
     s = 0
     n = int(n)
     for x in range(len(motif)):
         k = motif[s:s+n]
-        if len(k) == n:
-            #print k, count
-            s += 1
-            test.append(list([k,count]))
-            motifs.append(k)
-            counts.append(count)
+        if k not in forbidden:
+            if len(k) == n:
+                #print k, count
+                s += 1
+                test.append(list([k,count]))
+                motifs.append(k)
+                counts.append(count)
             
 
 def main():
