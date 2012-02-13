@@ -24,17 +24,15 @@ def main():
     parser = argparse.ArgumentParser(description= """Script to split aa motifs by
         length and group by count""")
     parser.add_argument('infile', help = "Input file with motif and count in col1 & 2""")
-    parser.add_argument('length', help = "Motif length")
+    parser.add_argument('length', help = "Motif length (currently setup for 3 or 4)")
     parser.add_argument('outfile', help = "Outfile to write summary stats to")
     args = parser.parse_args()
     
-    #test, motifs = [], []
-    with open(args.infile, 'r') as infile:
-        lines = infile.readlines()
+    with open(args.infile, 'rb') as infile:
+        lines = infile.readlines()[1:]
         for x in lines:
-            vals = x.split(" ")
-            motif_finder(vals[0].rstrip("\n"), int(vals[1].rstrip("\n")),
-                    args.length)
+            vals = x.split("\t")
+            motif_finder(vals[0], int(vals[3]), args.length)
         d = defaultdict(int)
         for x in test:
             d[x[0]] += int(x[1])

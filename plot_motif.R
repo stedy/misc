@@ -1,1 +1,19 @@
 # Rscript for plotting motifs from slicing done in get_motif.py
+library(calibrate)
+args <- commandArgs(TRUE)
+
+pop1.1 <- read.table(args[1], header = F)
+pop2.1 <- read.table(args[2], header = F)
+pop1.2 <- read.table(args[3], header = F)
+pop2.2 <- read.table(args[4], header = F)
+
+mer1.merge <- merge(pop1.1, pop2.1, by.x = 1, by.y = 1)
+mer2.merge <- merge(pop1.2, pop2.2, by.x = 1, by.y = 1)
+pdf('motifs.pdf', width=11, height = 8.5)
+par(mfrow=c(1,2))
+plot(mer1.merge[,2] ~ mer1.merge[, 3], ylab = args[1], xlab = args[2], main = "3-mers matching both populations")
+textxy(mer1.merge[,2], mer1.merge[, 3], mer1.merge[, 1])
+abline(a=0, b=1, col = "red")
+plot(mer2.merge[,2] ~ mer2.merge[, 3], ylab = args[3], xlab = args[4], main = "4-mers matching both populations")
+abline(a=0, b=1, col = "red")
+dev.off()
