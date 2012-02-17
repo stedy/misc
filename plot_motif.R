@@ -15,6 +15,7 @@ plot(mer1.merge[,2] ~ mer1.merge[, 3], ylab = args[1], xlab = args[2], main = "3
 textxy(mer1.merge[,2], mer1.merge[, 3], mer1.merge[, 1])
 abline(a=0, b=1, col = "red")
 plot(mer2.merge[,2] ~ mer2.merge[, 3], ylab = args[3], xlab = args[4], main = "4-mers matching both populations")
+textxy(mer2.merge[, 2], mer2.merge[, 3], mer2.merge[, 1])
 abline(a=0, b=1, col = "red")
 dev.off()
 
